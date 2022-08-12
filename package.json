@@ -24,6 +24,8 @@
     "start": "yarn build && node dist/index.js"
   },
   "dependencies": {
+    "@discordjs/rest": "^1.0.1",
+    "discord-api-types": "^0.37.2",
     "discord.js": "^14.2.0"
   }
 }
