@@ -2,6 +2,7 @@ import fetch, { RequestInit } from 'node-fetch';
 import { CommandInteraction, Client } from 'discord.js';
 import dotenv from 'dotenv';
 import { Command } from '../Command.js';
+import logger from '../utils/logger.js';
 
 dotenv.config();
 const apiEndpoint = process.env.API_ENDPOINT;
@@ -20,7 +21,11 @@ const getAPI = async (
   return (await res.json()) as GETResponse;
 };
 
-async function get(taskId: string): Promise<string> {
+async function get(taskId: string, attempt: number): Promise<string> {
+  if (attempt > 10) {
+    logger.error('get method timeout');
+    return 'error';
+  }
   const getEndpoint = `${apiEndpoint}/result/${taskId}`;
   try {
     const res: GETResponse = await getAPI(getEndpoint, {
@@ -30,11 +35,11 @@ async function get(taskId: string): Promise<string> {
     if (res.status !== 'completed' || res.result == null) {
       // eslint-disable-next-line no-promise-executor-return
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      return await get(taskId);
+      return await get(taskId, attempt + 1);
     }
     return res.result[0];
   } catch (error) {
-    console.error('fetch error in get', error);
+    logger.error('fetch error in get', error);
     return String(error);
   }
 }
@@ -65,12 +70,12 @@ export const Generate: Command = {
         body: JSON.stringify({ prompt: data }),
       });
       const task = (await taskRes.json()) as { task_id: string };
-      console.log(task.task_id);
-      const content = await get(task.task_id);
-      console.log(content);
+      logger.info(task.task_id);
+      const content = await get(task.task_id, 1);
+      logger.info(content);
       await interaction.editReply({ content });
     } catch (error) {
-      console.error('[ERROR]POST fetch error', error);
+      logger.error('POST fetch error', error);
       await interaction.editReply(errorRep);
     }
   },
