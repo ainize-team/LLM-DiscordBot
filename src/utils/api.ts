@@ -15,6 +15,19 @@ type POSTResponse = {
   task_id: string;
 };
 
+export type POSTRequest = {
+  prompt: string | null;
+  max_new_tokens?: number | null;
+  do_sample?: boolean | null;
+  early_stopping?: boolean | null;
+  num_beams?: number | null;
+  temperature?: number | null;
+  top_k?: number | null;
+  top_p?: number | null;
+  no_repeat_ngram_size?: number | null;
+  num_return_sequences?: number | null;
+};
+
 const getAPI = async (
   url: string,
   config: RequestInit
@@ -26,7 +39,7 @@ const getAPI = async (
 export async function get(taskId: string, attempt: number): Promise<string> {
   if (attempt > 10) {
     logger.error('get method timeout');
-    return 'error: timeout';
+    return 'Error: timeout for request';
   }
   const getEndpoint = `${apiEndpoint}/result/${taskId}`;
   try {
@@ -50,14 +63,17 @@ export async function get(taskId: string, attempt: number): Promise<string> {
   }
 }
 
-export async function post(url: string, data: string | null): Promise<string> {
+export async function post(
+  url: string,
+  data: POSTRequest | null
+): Promise<string> {
   try {
     const taskRes = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ prompt: data }),
+      body: JSON.stringify(data),
     });
     const task = (await taskRes.json()) as POSTResponse;
     return task.task_id;
