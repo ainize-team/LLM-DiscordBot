@@ -1,6 +1,6 @@
 import fetch, { RequestInit } from 'node-fetch';
 import dotenv from 'dotenv';
-import logger from '../utils/logger.js';
+import logger from '../utils/logger';
 
 dotenv.config();
 const apiEndpoint = process.env.API_ENDPOINT;

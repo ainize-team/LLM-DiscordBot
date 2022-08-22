@@ -1,8 +1,8 @@
 import { Client, Intents } from 'discord.js';
 import dotenv from 'dotenv';
-import interactionCreate from './listeners/interactionCreate.js';
-import ready from './listeners/ready.js';
-import logger from './utils/logger.js';
+import interactionCreate from './listeners/interactionCreate';
+import ready from './listeners/ready';
+import logger from './utils/logger';
 
 dotenv.config();
 const token = process.env.TOKEN;

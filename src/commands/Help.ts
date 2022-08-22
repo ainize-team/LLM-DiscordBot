@@ -1,6 +1,6 @@
 import { CommandInteraction, Client, MessageEmbed } from 'discord.js';
-import { Command } from '../Command.js';
-import logger from '../utils/logger.js';
+import { Command } from '../Command';
+import logger from '../utils/logger';
 
 const helpEmbed = new MessageEmbed({
   title: 'LLM bot',

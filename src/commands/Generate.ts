@@ -1,8 +1,8 @@
 import { CommandInteraction, Client } from 'discord.js';
 import dotenv from 'dotenv';
-import { Command } from '../Command.js';
-import logger from '../utils/logger.js';
-import { post, get, POSTRequest } from '../utils/api.js';
+import { Command } from '../Command';
+import logger from '../utils/logger';
+import { post, get, POSTRequest } from '../utils/api';
 
 dotenv.config();
 const apiEndpoint = process.env.API_ENDPOINT;

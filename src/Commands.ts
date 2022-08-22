@@ -1,7 +1,7 @@
-import { Command } from './Command.js';
-import { Hello } from './commands/Hello.js';
-import { Generate } from './commands/Generate.js';
-import { Help } from './commands/Help.js';
+import { Command } from './Command';
+import { Hello } from './commands/Hello';
+import { Generate } from './commands/Generate';
+import { Help } from './commands/Help';
 
 export const Commands: Command[] = [Hello, Generate, Help];
 

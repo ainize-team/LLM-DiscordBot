@@ -1,5 +1,5 @@
 import { CommandInteraction, Client, Interaction } from 'discord.js';
-import { Commands } from '../Commands.js';
+import { Commands } from '../Commands';
 
 const handleSlashCommand = async (
   client: Client,
