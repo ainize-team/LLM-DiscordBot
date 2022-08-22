@@ -24,7 +24,7 @@ git clone https://github.com/ainize-team/LLM-DiscordBot.git
 2. Install package
 
 ```shell
-npm install yarn
+npm install -g yarn
 yarn install
 ```
 
@@ -34,6 +34,11 @@ yarn install
 
 - Rename `sample.env` to `.env`
 - Edit it appropriately
+- sample
+```
+TOKEN='Your Token'
+API_ENDPOINT='Your LLM api endpoint'
+```
 
 4. Execute your bot server
 
