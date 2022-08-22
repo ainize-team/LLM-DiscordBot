@@ -22,7 +22,7 @@
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "eslint --fix src/**/*.ts",
     "build": "tsc",
-    "start": "yarn build && node dist/index.js"
+    "start": "tsc && node dist/index.js"
   },
   "dependencies": {
     "@discordjs/builders": "^1.1.0",
