@@ -1,6 +1,7 @@
 import fetch, { RequestInit } from 'node-fetch';
 import dotenv from 'dotenv';
 import logger from '../utils/logger';
+import Error from './error';
 
 dotenv.config();
 const apiEndpoint = process.env.API_ENDPOINT;
@@ -39,7 +40,7 @@ const getAPI = async (
 export async function get(taskId: string, attempt: number): Promise<string> {
   if (attempt > 10) {
     logger.error('get method timeout');
-    return 'Error: timeout for request';
+    return Error.API.timeout;
   }
   const getEndpoint = `${apiEndpoint}/result/${taskId}`;
   try {
@@ -49,7 +50,7 @@ export async function get(taskId: string, attempt: number): Promise<string> {
     });
     if (res.status === 'error') {
       logger.error('internal unknown error');
-      return 'api server internal error';
+      return Error.API.internal;
     }
     if (res.status !== 'completed' || res.result == null) {
       // eslint-disable-next-line no-promise-executor-return

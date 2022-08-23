@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import { Command } from '../Command';
 import logger from '../utils/logger';
 import { post, get, POSTRequest } from '../utils/api';
+import Error from '../utils/error';
 
 dotenv.config();
 const apiEndpoint = process.env.API_ENDPOINT;
@@ -109,12 +110,11 @@ export const Generate: Command = {
         : 1,
     };
     const postEndpoint = `${apiEndpoint}/generate`;
-    const errorRep = 'Error! Cannot generate sentence';
     try {
       const taskId = await post(postEndpoint, data);
       logger.info(taskId);
       if (!taskId) {
-        await interaction.editReply('Error: Please enter the correct value');
+        await interaction.editReply(Error.generate.input);
         return;
       }
       const content = await get(taskId, 1);
@@ -122,7 +122,7 @@ export const Generate: Command = {
       await interaction.editReply({ content });
     } catch {
       logger.debug('handle error');
-      await interaction.editReply(errorRep);
+      await interaction.editReply(Error.generate.internal);
     }
   },
 };
