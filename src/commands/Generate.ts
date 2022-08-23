@@ -1,12 +1,11 @@
 import { CommandInteraction, Client } from 'discord.js';
-import dotenv from 'dotenv';
 import { Command } from '../Command';
 import logger from '../utils/logger';
 import { post, get, POSTRequest } from '../utils/api';
 import Error from '../utils/error';
+import Config from '../config.json';
 
-dotenv.config();
-const apiEndpoint = process.env.API_ENDPOINT;
+const apiEndpoint = Config.api.endPoint;
 
 export const Generate: Command = {
   name: 'generate',
