@@ -1,10 +1,9 @@
 import fetch, { RequestInit } from 'node-fetch';
-import dotenv from 'dotenv';
 import logger from '../utils/logger';
 import Error from './error';
+import Config from '../config.json';
 
-dotenv.config();
-const apiEndpoint = process.env.API_ENDPOINT;
+const apiEndpoint = Config.api.endPoint;
 
 type GETResponse = {
   status: string;
