@@ -1,8 +1,8 @@
 {
   "bot": {
-    "token": "MTAwNzUzODc0Mzk1MzA2ODAzMw.G13hNh.7h_RMnWzk_3mAV7IAGGUqII3t_o8EtI_MqCjiA"
+    "token": ""
   },
   "api": {
-    "endPoint": "https://bloom-176b.ngrok.io"
+    "endPoint": ""
   }
 }
