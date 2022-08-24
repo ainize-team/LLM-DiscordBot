@@ -1,9 +1,9 @@
 import { CommandInteraction, Client } from 'discord.js';
-import { Command } from '../Command';
-import logger from '../utils/logger';
-import { post, get, POSTRequest } from '../utils/api';
-import Error from '../utils/error';
-import Config from '../config.json';
+import { Command } from '../Command.js';
+import logger from '../utils/logger.js';
+import { post, get, POSTRequest } from '../utils/api.js';
+import Error from '../utils/error.js';
+import Config from '../config.json' assert { type: 'json' };
 
 const apiEndpoint = Config.api.endPoint;
 
@@ -110,6 +110,7 @@ export const Generate: Command = {
     };
     const postEndpoint = `${apiEndpoint}/generate`;
     try {
+      logger.info(data.prompt);
       const taskId = await post(postEndpoint, data);
       logger.info(taskId);
       if (!taskId) {

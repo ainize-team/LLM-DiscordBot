@@ -4,7 +4,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
 
-    "module": "es2020",
+    "module": "esnext",
     "lib": ["es2021"],
     "rootDir": "./src",
 

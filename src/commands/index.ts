@@ -1,6 +1,6 @@
-import { Command } from '../Command';
-import { Generate } from './Generate';
-import { Help } from './Help';
+import { Command } from '../Command.js';
+import { Generate } from './Generate.js';
+import { Help } from './Help.js';
 
 export const Commands: Command[] = [Generate, Help];
 

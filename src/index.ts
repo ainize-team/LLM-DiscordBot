@@ -1,10 +1,11 @@
 import { Client, Intents } from 'discord.js';
-import interactionCreate from './listeners/interactionCreate';
-import ready from './listeners/ready';
-import logger from './utils/logger';
-import Config from './config.json';
+import interactionCreate from './listeners/interactionCreate.js';
+import ready from './listeners/ready.js';
+import logger from './utils/logger.js';
+import Config from './config.json' assert { type: 'json' };
 
 const { token } = Config.bot;
+logger.info(token);
 
 logger.info('Start Bot');
 const client = new Client({

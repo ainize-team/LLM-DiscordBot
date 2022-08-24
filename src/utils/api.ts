@@ -1,7 +1,7 @@
 import fetch, { RequestInit } from 'node-fetch';
-import logger from '../utils/logger';
-import Error from './error';
-import Config from '../config.json';
+import logger from '../utils/logger.js';
+import Error from './error.js';
+import Config from '../config.json' assert { type: 'json' };
 
 const apiEndpoint = Config.api.endPoint;
 
@@ -68,6 +68,7 @@ export async function post(
   data: POSTRequest | null
 ): Promise<string> {
   try {
+    logger.info(JSON.stringify(data));
     const taskRes = await fetch(url, {
       method: 'POST',
       headers: {
